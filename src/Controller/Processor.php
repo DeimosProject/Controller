@@ -6,10 +6,15 @@ use Deimos\Builder\Builder;
 use Deimos\Controller\Exceptions\ControllerNotFound;
 use Deimos\Controller\Traits\Request;
 
-abstract class Runner extends Builder
+abstract class Processor extends Builder
 {
 
     use Request;
+
+    /**
+     * @var string
+     */
+    protected $attribute = 'controller';
 
     /**
      * Runner constructor.
@@ -38,7 +43,7 @@ abstract class Runner extends Builder
      */
     public function execute()
     {
-        $name = $this->request()->attribute('controller');
+        $name = $this->request()->attribute($this->attribute);
 
         if ($this->methodExists($name))
         {
@@ -50,7 +55,7 @@ abstract class Runner extends Builder
             return $instance->execute();
         }
 
-        throw new ControllerNotFound($name);
+        throw new ControllerNotFound('Controller \'' . $name . '\' not found!');
     }
 
 }
