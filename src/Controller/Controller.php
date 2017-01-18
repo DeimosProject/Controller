@@ -8,6 +8,8 @@ use Deimos\Controller\Exceptions\RequestNotFound;
 abstract class Controller extends Proxy
 {
 
+    protected $attribute = 'action';
+
     /**
      * @return mixed
      *
@@ -20,7 +22,7 @@ abstract class Controller extends Proxy
         $this->configure();
         $this->before();
 
-        $name = $this->request()->attribute('action');
+        $name = $this->request()->attribute($this->attribute);
         $data = $this->instance($name);
 
         $this->after($data);
