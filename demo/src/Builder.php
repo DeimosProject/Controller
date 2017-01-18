@@ -34,26 +34,40 @@ class Builder extends \Deimos\Builder\Builder
      * @return Router
      *
      * @throws \InvalidArgumentException
+     *
+     * @throws \Deimos\Router\Exceptions\PathNotFound
+     * @throws \Deimos\Router\Exceptions\TypeNotFound
      */
     protected function buildRouter()
     {
         $router = new Router();
         $router->setRoutes([
             [
-                '/demo/many.php',
-                [
-                    'p1'     => 'hello',
-                    'p2'     => 'world',
-                    'action' => 'default'
+                'type' => 'prefix',
+                'path' => '/demo',
+
+                'resolver' => [
+                    [
+                        'type' => 'pattern',
+                        'path' => '/many.php',
+
+                        'defaults' => [
+                            'p1'     => 'hello',
+                            'p2'     => 'world',
+                            'action' => 'default'
+                        ],
+                    ],
+                    [
+                        'type' => 'pattern',
+                        'path' => '/demo.php',
+
+                        'defaults' => [
+                            'controller' => 'deimos',
+                            'action'     => 'default'
+                        ],
+                    ]
                 ]
             ],
-            [
-                '/demo/demo.php',
-                [
-                    'controller' => 'deimos',
-                    'action'     => 'default'
-                ]
-            ]
         ]);
 
         return $router;
@@ -69,6 +83,8 @@ class Builder extends \Deimos\Builder\Builder
 
     /**
      * @return Request
+     *
+     * @throws \InvalidArgumentException
      */
     protected function buildRequest()
     {
