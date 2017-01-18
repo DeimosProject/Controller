@@ -25,36 +25,46 @@ class ErrorBuilder extends \Deimos\Builder\Builder
 
         $router->setRoutes([
             [
-                '/admin/path',
-                [
+                'type' => 'pattern',
+                'path' => '/admin/path',
+
+                'defaults' => [
                     'controller' => 'example',
                     'action'     => 'index'
                 ]
             ],
             [
-                '/admin/path/<id:\d+>',
-                [
+                'type' => 'pattern',
+                'path' => '/admin/path/<id:\d+>',
+
+                'defaults' => [
                     'controller' => 'example',
                     'action'     => 'default'
                 ]
             ],
             [
-                '/admin/json',
-                [
+                'type' => 'pattern',
+                'path' => '/admin/json',
+
+                'defaults' => [
                     'controller' => 'example',
                     'action'     => 'json'
                 ]
             ],
             [
-                '/error/example',
-                [
+                'type' => 'pattern',
+                'path' => '/error/example',
+
+                'defaults' => [
                     'controller' => 'error',
                     'action'     => 'default'
                 ]
             ],
             [
-                '/error/example/123',
-                [
+                'type' => 'pattern',
+                'path' => '/error/example/123',
+
+                'defaults' => [
                     'controller' => 'example',
                     'action'     => 'error'
                 ]
