@@ -3,7 +3,7 @@
 namespace Deimos\Controller;
 
 use Deimos\Builder\Builder;
-use Deimos\Controller\Exceptions\ControllerNotFound;
+use Deimos\Controller\Exceptions\NotFound;
 use Deimos\Controller\Traits\Request;
 
 abstract class Processor extends Builder
@@ -39,7 +39,7 @@ abstract class Processor extends Builder
      * @throws \InvalidArgumentException
      * @throws Exceptions\RequestNotFound
      * @throws Exceptions\DisplayNone
-     * @throws ControllerNotFound
+     * @throws NotFound
      */
     public function execute()
     {
@@ -55,7 +55,7 @@ abstract class Processor extends Builder
             return $instance->execute();
         }
 
-        throw new ControllerNotFound('Controller \'' . $name . '\' not found!');
+        throw new NotFound('Controller \'' . $name . '\' not found!');
     }
 
 }

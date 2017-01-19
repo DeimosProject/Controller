@@ -2,7 +2,7 @@
 
 namespace Deimos\Controller\Exceptions;
 
-class ControllerNotFound extends \Exception
+class NotFound extends \Exception
 {
 
 }

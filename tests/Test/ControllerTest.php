@@ -55,7 +55,7 @@ class ControllerTest extends TestSetUp
     }
 
     /**
-     * @expectedException \Deimos\Controller\Exceptions\ControllerNotFound
+     * @expectedException \Deimos\Controller\Exceptions\NotFound
      * @path /error/example
      */
     public function testError3()

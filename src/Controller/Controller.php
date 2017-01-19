@@ -3,6 +3,7 @@
 namespace Deimos\Controller;
 
 use Deimos\Controller\Exceptions\DisplayNone;
+use Deimos\Controller\Exceptions\NotFound;
 use Deimos\Controller\Exceptions\RequestNotFound;
 
 abstract class Controller extends Proxy
@@ -16,6 +17,7 @@ abstract class Controller extends Proxy
      * @throws \InvalidArgumentException
      * @throws RequestNotFound
      * @throws DisplayNone
+     * @throws NotFound
      */
     public function execute()
     {
@@ -23,6 +25,12 @@ abstract class Controller extends Proxy
         $this->before();
 
         $name = $this->request()->attribute($this->attribute);
+
+        if (!$this->methodName($name))
+        {
+            throw new NotFound('Action \'' . $name . '\' not found!');
+        }
+
         $data = $this->instance($name);
 
         $this->after($data);
