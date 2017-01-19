@@ -26,7 +26,7 @@ abstract class Controller extends Proxy
 
         $name = $this->request()->attribute($this->attribute);
 
-        if (!$this->methodName($name))
+        if (!$this->methodExists($name))
         {
             throw new NotFound('Action \'' . $name . '\' not found!');
         }
