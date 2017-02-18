@@ -15,7 +15,7 @@
     }
   ],
   "require": {
-    "deimos/request": "~0.1",
+    "deimos/request": "~1.0",
     "deimos/router": "~0.1"
   },
   "require-dev": {
