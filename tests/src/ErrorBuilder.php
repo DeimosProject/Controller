@@ -2,6 +2,8 @@
 
 namespace DeimosTest;
 
+use Deimos\Slice\Slice;
+
 class ErrorBuilder extends \Deimos\Builder\Builder
 {
     public function helper()
@@ -19,11 +21,7 @@ class ErrorBuilder extends \Deimos\Builder\Builder
 
     protected function buildRouter()
     {
-        $router = new \Deimos\Router\Router();
-
-        $router->setMethod();
-
-        $router->setRoutes([
+        $router = new \Deimos\Router\Router(new Slice($this->helper(), [
             [
                 'type' => 'pattern',
                 'path' => '/admin/path',
@@ -69,7 +67,7 @@ class ErrorBuilder extends \Deimos\Builder\Builder
                     'action'     => 'error'
                 ]
             ]
-        ]);
+        ]));
 
         return $router;
     }

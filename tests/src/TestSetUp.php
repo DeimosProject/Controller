@@ -2,7 +2,7 @@
 
 namespace DeimosTest;
 
-class TestSetUp extends \PHPUnit_Framework_TestCase
+class TestSetUp extends \TestCase
 {
 
     /**
@@ -26,11 +26,11 @@ class TestSetUp extends \PHPUnit_Framework_TestCase
 
         if (isset($annotation['method']['errorBuilder'][0]))
         {
-            $this->builder   = new ErrorBuilder();
+            $this->builder = new ErrorBuilder();
         }
         else
         {
-            $this->builder   = new Builder();
+            $this->builder = new Builder();
         }
 
         $this->processor = new Processor($this->builder);

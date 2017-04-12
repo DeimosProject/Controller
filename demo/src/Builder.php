@@ -5,6 +5,7 @@ namespace DeimosSrc;
 use Deimos\Helper\Helper;
 use Deimos\Request\Request;
 use Deimos\Router\Router;
+use Deimos\Slice\Slice;
 
 class Builder extends \Deimos\Builder\Builder
 {
@@ -34,14 +35,10 @@ class Builder extends \Deimos\Builder\Builder
      * @return Router
      *
      * @throws \InvalidArgumentException
-     *
-     * @throws \Deimos\Router\Exceptions\PathNotFound
-     * @throws \Deimos\Router\Exceptions\TypeNotFound
      */
     protected function buildRouter()
     {
-        $router = new Router();
-        $router->setRoutes([
+        $router = new Router(new Slice($this->helper(), [
             [
                 'type' => 'prefix',
                 'path' => '/demo',
@@ -68,7 +65,7 @@ class Builder extends \Deimos\Builder\Builder
                     ]
                 ]
             ],
-        ]);
+        ]));
 
         return $router;
     }
